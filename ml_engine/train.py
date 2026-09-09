@@ -8,11 +8,11 @@ def tam():
     print("Loading processed data...")
     df = pd.read_csv("pdata.csv")
     
-    # Drop the target label if your dataset has one (we want the model to learn unsupervised)
-    if 'is_fraud' in df.columns:
-        X = df.drop(columns=['is_fraud'])
-    else:
-        X = df
+    # Storing target label AND metadata columns that are not ML features in a list to be dropped
+    cols_to_drop = ['is_fraud', 'transaction_id', 'user_id', 'transaction_time']
+    
+    # Only drop the columns that actually exist in the dataframe
+    X = df.drop(columns=[col for col in cols_to_drop if col in df.columns])
 
     print("Training Isolation Forest...")
     # contamination = estimated percentage of fraud in the dataset (e.g., 5%)
