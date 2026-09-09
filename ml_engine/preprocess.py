@@ -34,8 +34,8 @@ def prepare_data(pathcsv):
         joblib.dump(scaler, 'saved_models/scaler.pkl')
 
     # Save the processed data for training
-    df.to_csv("processed_data.csv", index=False)
-    print("Preprocessing complete! Saved to processed_data.csv")
+    df.to_csv("pdata.csv", index=False)
+    print("Preprocessing complete! Saved to pdata.csv")
     return df
 
 if __name__ == "__main__":
